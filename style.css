@@ -152,7 +152,12 @@
   color: red;
 }
 
-.errorMessage{
+.errorMessage {
   color: red;
   background-color: whitesmoke;
+}
+
+#messageIncome {
+  text-align: center;
+  font-size: 20px;
 }
