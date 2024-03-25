@@ -11,7 +11,6 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body class="content">
     <!--Header-->
@@ -53,7 +52,7 @@
           "
         >
           <div style="padding: 10px 10px">
-            <h3>Yahh.. tanggalnya?</h3>
+            <h3>Yahh.. tanggalnya?<span class="required">*</span></h3>
             <div class="form-floating">
               <input
                 type="date"
@@ -66,7 +65,7 @@
           </div>
           <!--1-->
           <div style="padding: 10px 10px">
-            <h3>Keterangan</h3>
+            <h3>Keterangan<span class="required">*</span></h3>
             <div class="form-floating">
               <select id="categories" class="form-select">
                 <option value=""></option>
@@ -80,7 +79,7 @@
           </div>
           <!--2-->
           <div style="padding: 10px 10px">
-            <h3>Nominal</h3>
+            <h3>Nominal<span class="required">*</span></h3>
             <div class="form-floating">
               <input
                 type="number"
@@ -155,6 +154,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

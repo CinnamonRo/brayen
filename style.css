@@ -147,3 +147,12 @@
   margin-bottom: 20px;
   overflow-y: auto;
 }
+
+.required {
+  color: red;
+}
+
+.errorMessage{
+  color: red;
+  background-color: whitesmoke;
+}
