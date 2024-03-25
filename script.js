@@ -12,46 +12,60 @@ $(document).ready(function () {
   $("#nameShow").text(username);
 
   loadTransaction();
-
 });
 
-function loadTransaction(){
-  var obj = $('#transactionList');
+function loadTransaction() {
+  var obj = $("#transactionList");
   var existingData = JSON.parse(localStorage.getItem("myData")) || [];
   console.log("check obj ", obj);
   console.log("check data : ", existingData);
 
-  $.each(existingData, function(index, value){
+  $.each(existingData, function (index, value) {
     console.log("cek index ", index);
     console.log("cek value ", value);
-    if(value.type === 'pengeluaran') {
-      obj.append(`<div class="pengeluaran"><div>
-                    `+ value.catatan+ `<br> ` + value.keterangan + `
+    if (value.type === "pengeluaran") {
+      obj.append(
+        `<div class="pengeluaran"><div>
+                    ` +
+          value.catatan +
+          `<br> ` +
+          value.keterangan +
+          `
                   </div>
                   <div class="money">
-                    -`+ formatRibuan(value.pengeluaran) +`
+                    -` +
+          formatRibuan(value.pengeluaran) +
+          `
                   </div>
-                  </div>`);
-    }else {
-      obj.append(`<div class="penghasilan"><div>
-                    `+ value.catatan+ `<br> ` + value.keterangan + `
+                  </div>`
+      );
+    } else {
+      obj.append(
+        `<div class="penghasilan"><div>
+                    ` +
+          value.catatan +
+          `<br> ` +
+          value.keterangan +
+          `
                   </div>
                   <div class="money">
-                    +`+ formatRibuan(value.nominal) +`
+                    +` +
+          formatRibuan(value.nominal) +
+          `
                   </div>
-                  </div>`);
+                  </div>`
+      );
     }
-  })
+  });
 
-  var total = $('#balance');
-  if(localStorage.getItem('count')){
+  var total = $("#balance");
+  if (localStorage.getItem("count")) {
     var existingCount = JSON.parse(localStorage.getItem("count")) || [];
-    console.log("cek count : ", existingCount)
+    console.log("cek count : ", existingCount);
     total.text(formatRibuan(existingCount.number));
-  }else {
+  } else {
     total.text(formatRibuan(0));
   }
-
 }
 
 function submitOut() {
@@ -85,56 +99,55 @@ function submitOut() {
     $("#catatanPengeluaran").css("border", "1px solid red");
   }
 
-    $.each(message, function (index, value) {
+  $.each(message, function (index, value) {
     console.log("Index: " + index + ", Value: " + value);
     $("#messageOutcome").append(
       `<span class='errorMessage'>` + value + `</span> <br>`
     );
   });
 
-  if(message.length == 0){
+  if (message.length == 0) {
     var dataPengeluaran = {
-      type: 'pengeluaran',
+      type: "pengeluaran",
       tanggal: tanggalPengeluaran,
       keterangan: keteranganPengeluaran,
       pengeluaran: pengeluaran,
       catatan: catatanPengeluaran,
     };
-  
+
     var existingData = JSON.parse(localStorage.getItem("myData")) || [];
     existingData.push(dataPengeluaran);
     localStorage.setItem("myData", JSON.stringify(existingData));
 
-    if(localStorage.getItem("count")){
+    if (localStorage.getItem("count")) {
       var existingCount = JSON.parse(localStorage.getItem("count"));
-      var calculate = parseInt(existingCount.number) + parseInt(pengeluaran);
+      var calculate = parseInt(existingCount.number) - parseInt(pengeluaran);
       console.log("calculate exisiting : " + calculate);
       existingCount.number = calculate;
       localStorage.setItem("count", JSON.stringify(existingCount));
-    }else {
+    } else {
       var calculate = 0 - parseInt(pengeluaran);
       console.log("cek calculate : " + calculate);
-      var count = {number: calculate};
+      var count = { number: calculate };
       localStorage.setItem("count", JSON.stringify(count));
     }
 
-    $("#messageOutcome").append(`<span class='successMessage'>Data Success Added</span> <br>`);
+    $("#messageOutcome").append(
+      `<span class='successMessage'>Data Success Added</span> <br>`
+    );
 
-    setTimeout(function() {
-      $(".successMessage").remove(); 
+    setTimeout(function () {
+      $(".successMessage").remove();
     }, 3000);
 
-    $("#tanggalPengeluaran").val('');
-    $("#keteranganPengeluaran").val('');
-    $("#pengeluaran").val('');
-    $("#catatanPengeluaran").val('');
-
+    $("#tanggalPengeluaran").val("");
+    $("#keteranganPengeluaran").val("");
+    $("#pengeluaran").val("");
+    $("#catatanPengeluaran").val("");
   }
-
 }
 
 function submit() {
-
   $("#messageIncome").empty();
   $("#dateIn").css("border", "");
   $("#catIn").css("border", "");
@@ -179,49 +192,48 @@ function submit() {
 
   console.log("cek data message ", message);
 
-  if(message.length == 0 ){
+  if (message.length == 0) {
     var data = {
-        type: 'penghasilan',
-        tanggal: tanggalPendapatan,
-        keterangan: keterangan,
-        nominal: nominal,
-        catatan: catatan,
-      };
+      type: "penghasilan",
+      tanggal: tanggalPendapatan,
+      keterangan: keterangan,
+      nominal: nominal,
+      catatan: catatan,
+    };
 
-      var existingData = JSON.parse(localStorage.getItem("myData")) || [];
-      existingData.push(data);
-      localStorage.setItem("myData", JSON.stringify(existingData));
-      
-      if(localStorage.getItem("count")){
-        var existingCount = JSON.parse(localStorage.getItem("count"));
-        console.log("cek data count sebelumnya " + existingCount.number);
-        var calculate = parseInt(existingCount.number) + parseInt(nominal);
-        console.log("calculate exisiting : " + calculate);
-        existingCount.number = calculate;
-        localStorage.setItem("count", JSON.stringify(existingCount));
-      }else {
-        var calculate = 0 + parseInt(nominal);
-        console.log("cek calculate : " + calculate);
-        var count = {number: calculate};
-        localStorage.setItem("count", JSON.stringify(count));
-      }
+    var existingData = JSON.parse(localStorage.getItem("myData")) || [];
+    existingData.push(data);
+    localStorage.setItem("myData", JSON.stringify(existingData));
 
-      $("#messageIncome").append(`<span class='successMessage'>Data Success Added</span> <br>`);
+    if (localStorage.getItem("count")) {
+      var existingCount = JSON.parse(localStorage.getItem("count"));
+      console.log("cek data count sebelumnya " + existingCount.number);
+      var calculate = parseInt(existingCount.number) + parseInt(nominal);
+      console.log("calculate exisiting : " + calculate);
+      existingCount.number = calculate;
+      localStorage.setItem("count", JSON.stringify(existingCount));
+    } else {
+      var calculate = 0 + parseInt(nominal);
+      console.log("cek calculate : " + calculate);
+      var count = { number: calculate };
+      localStorage.setItem("count", JSON.stringify(count));
+    }
 
-      setTimeout(function() {
-        $(".successMessage").remove(); 
-      }, 3000);
+    $("#messageIncome").append(
+      `<span class='successMessage'>Data Success Added</span> <br>`
+    );
 
-      $("#dateIn").val('');
-      $("#catIn").val('');
-      $("#moneyIn").val('');
-      $("#inNote").val('');
+    setTimeout(function () {
+      $(".successMessage").remove();
+    }, 3000);
+
+    $("#dateIn").val("");
+    $("#catIn").val("");
+    $("#moneyIn").val("");
+    $("#inNote").val("");
   }
 }
 
 function formatRibuan(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
-
-
