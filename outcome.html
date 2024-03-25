@@ -45,7 +45,7 @@
       <div
         style="width: 55vw; height: 35vh; margin-left: auto; margin-right: auto"
       >
-        <div id="messageIncome"></div>
+        <div id="messageOutcome"></div>
         <div style="padding: 10px 10px">
           <h3>Yahh.. tanggalnya?<span class="required">*</span></h3>
           <div class="form-floating">
@@ -81,13 +81,13 @@
               class="form-control"
               id="pengeluaran"
               placeholder="namaKelompok"
-            />
+                          />
             <label for="floatingInputValue">masukkan uangmu</label>
           </div>
         </div>
         <!--3-->
         <div style="padding: 10px 10px">
-          <h3>Catatan</h3>
+          <h3>Catatan<span class="required">*</span></h3>
           <div class="form-floating">
             <input
               type="text"
@@ -100,7 +100,7 @@
         </div>
         <!--button-->
         <div class="d-flex justify-content-center p-2">
-          <button id="submitt" type="submit" class="btn">Submit</button>
+          <button id="submitt" type="submit" class="btn" onclick="submitOut()">Submit</button>
         </div>
       </div>
     </div>
