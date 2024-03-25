@@ -3,8 +3,12 @@ $(document).ready(function () {
   $("#login").submit(function (event) {
     event.preventDefault(); // prevent form submit
     var username = $("#inputName").val();
-    localStorage.setItem("username", username);
-    window.location.href = "main.html";
+    if (username !== "") {
+      localStorage.setItem("username", username);
+      window.location.href = "main.html";
+    } else {
+      alert("Masukkan nama");
+    }
   });
 
   // header
@@ -17,12 +21,8 @@ $(document).ready(function () {
 function loadTransaction() {
   var obj = $("#transactionList");
   var existingData = JSON.parse(localStorage.getItem("myData")) || [];
-  console.log("check obj ", obj);
-  console.log("check data : ", existingData);
 
   $.each(existingData, function (index, value) {
-    console.log("cek index ", index);
-    console.log("cek value ", value);
     if (value.type === "pengeluaran") {
       obj.append(
         `<div class="pengeluaran"><div>
@@ -61,7 +61,7 @@ function loadTransaction() {
   var total = $("#balance");
   if (localStorage.getItem("count")) {
     var existingCount = JSON.parse(localStorage.getItem("count")) || [];
-    console.log("cek count : ", existingCount);
+
     total.text(formatRibuan(existingCount.number));
   } else {
     total.text(formatRibuan(0));
@@ -100,7 +100,6 @@ function submitOut() {
   }
 
   $.each(message, function (index, value) {
-    console.log("Index: " + index + ", Value: " + value);
     $("#messageOutcome").append(
       `<span class='errorMessage'>` + value + `</span> <br>`
     );
@@ -122,12 +121,12 @@ function submitOut() {
     if (localStorage.getItem("count")) {
       var existingCount = JSON.parse(localStorage.getItem("count"));
       var calculate = parseInt(existingCount.number) - parseInt(pengeluaran);
-      console.log("calculate exisiting : " + calculate);
+
       existingCount.number = calculate;
       localStorage.setItem("count", JSON.stringify(existingCount));
     } else {
       var calculate = 0 - parseInt(pengeluaran);
-      console.log("cek calculate : " + calculate);
+
       var count = { number: calculate };
       localStorage.setItem("count", JSON.stringify(count));
     }
@@ -159,11 +158,6 @@ function submit() {
   let nominal = $("#moneyIn").val();
   let catatan = $("#inNote").val();
 
-  console.log("cek data date : " + tanggalPendapatan);
-  console.log("cek data keterangan : " + keterangan);
-  console.log("cek data nominal : " + nominal);
-  console.log("cek data catatan : " + catatan);
-
   var message = [];
 
   if (tanggalPendapatan.trim() === "") {
@@ -184,13 +178,10 @@ function submit() {
   }
 
   $.each(message, function (index, value) {
-    console.log("Index: " + index + ", Value: " + value);
     $("#messageIncome").append(
       `<span class='errorMessage'>` + value + `</span> <br>`
     );
   });
-
-  console.log("cek data message ", message);
 
   if (message.length == 0) {
     var data = {
@@ -207,14 +198,13 @@ function submit() {
 
     if (localStorage.getItem("count")) {
       var existingCount = JSON.parse(localStorage.getItem("count"));
-      console.log("cek data count sebelumnya " + existingCount.number);
+
       var calculate = parseInt(existingCount.number) + parseInt(nominal);
-      console.log("calculate exisiting : " + calculate);
+
       existingCount.number = calculate;
       localStorage.setItem("count", JSON.stringify(existingCount));
     } else {
       var calculate = 0 + parseInt(nominal);
-      console.log("cek calculate : " + calculate);
       var count = { number: calculate };
       localStorage.setItem("count", JSON.stringify(count));
     }
