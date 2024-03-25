@@ -1,0 +1,149 @@
+/* Style the header with a grey background and some padding */
+.header {
+  overflow: hidden;
+  background-color: #b4bdff;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  width: 70px;
+}
+/* Style the header links */
+.header a {
+  color: black;
+  padding: 12px;
+  margin: 0px 15px 0px 15px;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 25px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #83a2ff7a;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: #83a2ff;
+  color: white;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 700px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+.content {
+  background-color: #fadcb2df;
+  font-style: Helvetica Neue;
+  margin: 0;
+  overflow: auto;
+}
+
+#indexbody {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#indexbody #a {
+  padding-top: 50px;
+  width: 500px;
+  margin: auto;
+  height: 450px;
+  background-color: #fadcb2df;
+  box-shadow: 6px 8px #ffd28f;
+}
+
+.card {
+  width: 17rem;
+  height: 1000px;
+  transition: 0.5s ease-in-out;
+  box-shadow: 6px 8px #ffd28f;
+  margin-top: 30px;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+#nameText {
+  width: 900px;
+  height: 40px;
+  margin: auto;
+  align-items: center;
+}
+
+#nameText div {
+  text-align: center;
+  margin-top: 50px;
+  margin: auto;
+}
+
+#labelBox {
+  width: 900px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#inputLabel {
+  margin-bottom: 30px;
+}
+
+#inputLabel input {
+  height: 30px;
+}
+
+#inputLabel select {
+  height: 35px;
+}
+
+#submit {
+  background-color: #b4bdff;
+  height: 7vh;
+  width: 12vw;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Dark gray shadow */
+}
+
+#submit:hover {
+  background-color: #6dbf9f;
+  transform: translateY(-7px);
+  animation: 2s ease-in-out;
+}
+
+#submitt {
+  background-color: #b4bdff;
+  height: 7vh;
+  width: 12vw;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Dark gray shadow */
+}
+#submitt:hover {
+  background-color: #ffb3b3;
+  transform: translateY(-7px);
+  animation: 2s ease-in-out;
+}
+
+#box {
+  background-color: #7ec8a9;
+  width: 60vw;
+  height: 65vh;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(126, 200, 169, 0.5);
+  margin-bottom: 20px;
+  overflow-y: auto;
+}
